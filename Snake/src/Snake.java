@@ -7,16 +7,20 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.wb.swt.SWTResourceManager;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 
 public class Snake {
 
 	protected Shell shell;
 	private Punto testa = new Punto ();
+	private Punto mela = new Punto ();
 	private final int MASX = 350;
 	private final int MASY = 250;
 	private int randX;
 	private int randY;
-
+	private Text text;
+	
 	/**
 	 * Launch the application.
 	 * @param args
@@ -50,7 +54,7 @@ public class Snake {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(509, 311);
+		shell.setSize(548, 320);
 		shell.setText("SWT Application");
 		
 		testa.setX(MASX/2);
@@ -67,12 +71,17 @@ public class Snake {
 		btnProva.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				randX = ((int)Math.random()*MASX);
+				randY = ((int)Math.random()*MASY);
 				
+				mela.setX(randX);
+				mela.setY(randY);
 				gc.drawRectangle(testa.getX(), testa.getY(), 5, 5);
+				gc.drawOval(mela.getX(), mela.getY(), 5, 5);
 				
 			}
 		});
-		btnProva.setBounds(382, 10, 102, 25);
+		btnProva.setBounds(366, 10, 152, 42);
 		btnProva.setText("Inizia");
 		
 		Button btnV = new Button(shell, SWT.NONE);
@@ -83,7 +92,7 @@ public class Snake {
 				testa.setY(testa.getY()+5);
 			}
 		});
-		btnV.setBounds(418, 72, 30, 25);
+		btnV.setBounds(419, 103, 46, 39);
 		btnV.setText("v");
 		
 		Button button = new Button(shell, SWT.NONE);
@@ -99,7 +108,7 @@ public class Snake {
 			
 		});
 		button.setText("^");
-		button.setBounds(419, 41, 30, 25);
+		button.setBounds(419, 58, 44, 39);
 		
 		Button button_1 = new Button(shell, SWT.NONE);
 		button_1.addSelectionListener(new SelectionAdapter() {
@@ -110,7 +119,7 @@ public class Snake {
 			}
 		});
 		button_1.setText("<");
-		button_1.setBounds(382, 72, 30, 25);
+		button_1.setBounds(367, 103, 46, 39);
 		
 		Button button_2 = new Button(shell, SWT.NONE);
 		button_2.addSelectionListener(new SelectionAdapter() {
@@ -121,7 +130,14 @@ public class Snake {
 			}
 		});
 		button_2.setText(">");
-		button_2.setBounds(454, 72, 30, 25);
+		button_2.setBounds(471, 103, 47, 39);
+		
+		Label lblPunti = new Label(shell, SWT.NONE);
+		lblPunti.setBounds(382, 245, 38, 15);
+		lblPunti.setText("Punti:");
+		
+		text = new Text(shell, SWT.BORDER);
+		text.setBounds(438, 239, 45, 21);
 		
 		
 
