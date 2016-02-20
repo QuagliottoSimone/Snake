@@ -7,7 +7,7 @@ public class Punto {
 		x = 3;
 		y = 3;
 	}
-
+	
 	public int getX() {
 		return x;
 	}
