@@ -18,13 +18,16 @@ public class Snake {
 	protected Shell shell;
 	private Punto testa = new Punto ();
 	private Punto mela = new Punto ();
-	private final int MASX = 350;
-	private final int MASY = 250;
-	private Text text;
+	private final int MASX = 300;
+	private final int MASY = 300;
 	private Canvas canvas;
 	private Random randomGenerator = new Random();
 	GC gc;
-	private boolean flag = true;
+	int ix = 300;
+	int iy = 300;
+	int gX = MASX/30;
+	int gY = MASY/30;
+	
 	/**
 	 * Launch the application.
 	 * @param args
@@ -65,7 +68,7 @@ public class Snake {
 	 */
 	protected void createContents() {
 		shell = new Shell();
-		shell.setSize(548, 380);
+		shell.setSize(548, 434);
 		shell.setText("SWT Application");
 		
 		testa.setX(MASX/2);
@@ -83,10 +86,11 @@ public class Snake {
 		btnProva.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
+				gX = gX * randomGenerator.nextInt(30);
+				gY = gY * randomGenerator.nextInt(30);
 				gc.drawRectangle(testa.getX(), testa.getY(), 5, 5);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-				gc.drawOval(mela.getX(), mela.getY(), 5, 5);
+				gc.drawOval(gX, gY, 5, 5);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 			}
 		});
@@ -99,10 +103,11 @@ public class Snake {
 			public void widgetSelected(SelectionEvent e) {
 					gc.fillRectangle(0,0,MASX,MASY);
 					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-					gc.drawOval(mela.getX(), mela.getY(), 5, 5);
+					gc.drawOval(gX, gY, 5, 5);
 					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 					gc.drawRectangle(testa.getX(), testa.getY()+5, 5, 5);
 					testa.setY(testa.getY()+5);
+					
 			}
 		});
 		btnV.setBounds(417, 148, 46, 39);
@@ -115,7 +120,7 @@ public class Snake {
 			public void widgetSelected(SelectionEvent e) {
 				gc.fillRectangle(0,0,MASX,MASY);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-				gc.drawOval(mela.getX(), mela.getY(), 5, 5);
+				gc.drawOval(gX, gY, 5, 5);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 				gc.drawRectangle(testa.getX(), testa.getY()-5, 5, 5);
 				testa.setY(testa.getY()-5);
@@ -132,7 +137,7 @@ public class Snake {
 			public void widgetSelected(SelectionEvent e) {
 				gc.fillRectangle(0,0,MASX,MASY);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-				gc.drawOval(mela.getX(), mela.getY(), 5, 5);
+				gc.drawOval(gX, gY, 5, 5);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 				gc.drawRectangle(testa.getX()-5, testa.getY(), 5, 5);
 				testa.setX(testa.getX()-5);
@@ -147,7 +152,7 @@ public class Snake {
 			public void widgetSelected(SelectionEvent e) {
 				gc.fillRectangle(0,0,MASX,MASY);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-				gc.drawOval(mela.getX(), mela.getY(), 5, 5);
+				gc.drawOval(gX, gY, 5, 5);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 				gc.drawRectangle(testa.getX()+5, testa.getY(), 5, 5);
 				testa.setX(testa.getX()+5);
@@ -158,11 +163,8 @@ public class Snake {
 		
 		Label lblPunti = new Label(shell, SWT.NONE);
 		lblPunti.setFont(SWTResourceManager.getFont("Segoe Script", 12, SWT.NORMAL));
-		lblPunti.setBounds(366, 269, 77, 39);
+		lblPunti.setBounds(342, 279, 77, 39);
 		lblPunti.setText("Punti:");
-		
-		text = new Text(shell, SWT.BORDER);
-		text.setBounds(433, 271, 85, 21);
 		
 		Label lblSnake = new Label(shell, SWT.NONE);
 		lblSnake.setAlignment(SWT.CENTER);
@@ -170,6 +172,11 @@ public class Snake {
 		lblSnake.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		lblSnake.setBounds(200, 10, 114, 42);
 		lblSnake.setText("SNAKE");
+		
+		Label lblNewLabel = new Label(shell, SWT.NONE);
+		lblNewLabel.setFont(SWTResourceManager.getFont("Segoe Script", 12, SWT.NORMAL));
+		lblNewLabel.setBounds(436, 279, 70, 29);
+		lblNewLabel.setText("0");
 		
 		
 
