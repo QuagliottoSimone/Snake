@@ -13,7 +13,7 @@ public class Punto {
 	}
 
 	public void setX(int x) {
-		if (x >= 0  && x <= 350) {
+		if (x >= 0  && x <= 300) {
 			this.x = x;
 		}
 
@@ -24,7 +24,7 @@ public class Punto {
 	}
 
 	public void setY(int y) {
-		if (y >= 0 && y <= 250) {
+		if (y >= 0 && y <= 300){
 			this.y = y;
 		}
 	}

@@ -92,6 +92,8 @@ public class Snake {
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 				gc.drawOval(gX, gY, 5, 5);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
+				mela.setX(gX);
+				mela.setY(gY);
 			}
 		});
 		btnProva.setBounds(366, 58, 152, 42);
@@ -101,12 +103,15 @@ public class Snake {
 		btnV.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				gX = gX * randomGenerator.nextInt(30);
+				gY = gY * randomGenerator.nextInt(30);
 					gc.fillRectangle(0,0,MASX,MASY);
 					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 					gc.drawOval(gX, gY, 5, 5);
 					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 					gc.drawRectangle(testa.getX(), testa.getY()+5, 5, 5);
 					testa.setY(testa.getY()+5);
+					
 					
 			}
 		});
