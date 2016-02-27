@@ -88,9 +88,9 @@ public class Snake {
 			public void widgetSelected(SelectionEvent e) {
 				gX = gX * randomGenerator.nextInt(30);
 				gY = gY * randomGenerator.nextInt(30);
-				gc.drawRectangle(testa.getX(), testa.getY(), 5, 5);
+				gc.drawRectangle(testa.getX(), testa.getY(), 10, 10);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-				gc.drawOval(gX, gY, 5, 5);
+				gc.drawOval(gX, gY, 10, 10);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 				mela.setX(gX);
 				mela.setY(gY);
@@ -107,10 +107,10 @@ public class Snake {
 				gY = gY * randomGenerator.nextInt(30);
 					gc.fillRectangle(0,0,MASX,MASY);
 					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-					gc.drawOval(gX, gY, 5, 5);
+					gc.drawOval(gX, gY, 10, 10);
 					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-					gc.drawRectangle(testa.getX(), testa.getY()+5, 5, 5);
-					testa.setY(testa.getY()+5);
+					gc.drawRectangle(testa.getX(), testa.getY()+10, 10, 10);
+					testa.setY(testa.getY()+10);
 					
 					
 			}
@@ -125,10 +125,10 @@ public class Snake {
 			public void widgetSelected(SelectionEvent e) {
 				gc.fillRectangle(0,0,MASX,MASY);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-				gc.drawOval(gX, gY, 5, 5);
+				gc.drawOval(gX, gY, 10, 10);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				gc.drawRectangle(testa.getX(), testa.getY()-5, 5, 5);
-				testa.setY(testa.getY()-5);
+				gc.drawRectangle(testa.getX(), testa.getY()-10, 10, 10);
+				testa.setY(testa.getY()-10);
 				
 			}
 			
@@ -142,10 +142,10 @@ public class Snake {
 			public void widgetSelected(SelectionEvent e) {
 				gc.fillRectangle(0,0,MASX,MASY);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-				gc.drawOval(gX, gY, 5, 5);
+				gc.drawOval(gX, gY, 10, 10);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				gc.drawRectangle(testa.getX()-5, testa.getY(), 5, 5);
-				testa.setX(testa.getX()-5);
+				gc.drawRectangle(testa.getX()-10, testa.getY(), 10, 10);
+				testa.setX(testa.getX()-10);
 			}
 		});
 		button_1.setText("<");
@@ -157,10 +157,10 @@ public class Snake {
 			public void widgetSelected(SelectionEvent e) {
 				gc.fillRectangle(0,0,MASX,MASY);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-				gc.drawOval(gX, gY, 5, 5);
+				gc.drawOval(gX, gY, 10, 10);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				gc.drawRectangle(testa.getX()+5, testa.getY(), 5, 5);
-				testa.setX(testa.getX()+5);
+				gc.drawRectangle(testa.getX()+5, testa.getY(), 10, 10);
+				testa.setX(testa.getX()+10);
 			}
 		});
 		button_2.setText(">");
