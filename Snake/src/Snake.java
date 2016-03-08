@@ -103,8 +103,7 @@ public class Snake {
 		btnV.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				gX = gX * randomGenerator.nextInt(30);
-				gY = gY * randomGenerator.nextInt(30);
+				
 					gc.fillRectangle(0,0,MASX,MASY);
 					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 					gc.drawOval(gX, gY, 10, 10);
