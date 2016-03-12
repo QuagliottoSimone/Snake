@@ -110,10 +110,12 @@ public class Snake {
 					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 					gc.drawRectangle(testa.getX(), testa.getY()+10, 10, 10);
 					testa.setY(testa.getY()+10);
-					
+						
+					}
 					
 			}
-		});
+			
+		);
 		btnV.setBounds(417, 148, 46, 39);
 		btnV.setText("v");
 		
@@ -128,10 +130,23 @@ public class Snake {
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 				gc.drawRectangle(testa.getX(), testa.getY()-10, 10, 10);
 				testa.setY(testa.getY()-10);
+				if(mela.equals(testa)== true){
+					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
+					gc.drawOval(mela.getX(), mela.getY(), 10, 10);
+					generaMela(MASX,MASY);
+					System.out.println(mela.toString());
+					gX = gX * randomGenerator.nextInt(30);
+					gY = gY * randomGenerator.nextInt(30);
+					mela.setX(gX);
+					mela.setY(gY);
+					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
+					gc.drawOval(gX, gY, 10, 10);
+					System.out.println(mela.toString());
 				
 			}
-			
-		});
+			}
+			});
+		
 		button.setText("^");
 		button.setBounds(419, 106, 44, 39);
 		
