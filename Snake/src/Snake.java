@@ -2,6 +2,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.util.Random;
 
 import org.eclipse.swt.SWT;
@@ -27,6 +29,7 @@ public class Snake {
 	int iy = 300;
 	int gX = MASX/30;
 	int gY = MASY/30;
+	Label labelPunt;
 	
 	/**
 	 * Launch the application.
@@ -110,6 +113,11 @@ public class Snake {
 					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 					gc.drawRectangle(testa.getX(), testa.getY()+10, 10, 10);
 					testa.setY(testa.getY()+10);
+					if(mela.equals(testa)== true){
+						
+						labelPunt.setText("" +  (Integer.parseInt(labelPunt.getText())+10));
+			
+				}
 						
 					}
 					
@@ -131,17 +139,8 @@ public class Snake {
 				gc.drawRectangle(testa.getX(), testa.getY()-10, 10, 10);
 				testa.setY(testa.getY()-10);
 				if(mela.equals(testa)== true){
-					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_GRAY));
-					gc.drawOval(mela.getX(), mela.getY(), 10, 10);
-					generaMela(MASX,MASY);
-					System.out.println(mela.toString());
-					gX = gX * randomGenerator.nextInt(30);
-					gY = gY * randomGenerator.nextInt(30);
-					mela.setX(gX);
-					mela.setY(gY);
-					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
-					gc.drawOval(gX, gY, 10, 10);
-					System.out.println(mela.toString());
+					
+					labelPunt.setText("" +  (Integer.parseInt(labelPunt.getText())+10));
 				
 			}
 			}
@@ -160,6 +159,11 @@ public class Snake {
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 				gc.drawRectangle(testa.getX()-10, testa.getY(), 10, 10);
 				testa.setX(testa.getX()-10);
+				if(mela.equals(testa)== true){
+					
+					labelPunt.setText("" +  (Integer.parseInt(labelPunt.getText())+10));
+				
+			}
 			}
 		});
 		button_1.setText("<");
@@ -175,15 +179,15 @@ public class Snake {
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 				gc.drawRectangle(testa.getX()+5, testa.getY(), 10, 10);
 				testa.setX(testa.getX()+10);
+				if(mela.equals(testa)== true){
+					
+					labelPunt.setText("" +  (Integer.parseInt(labelPunt.getText())+10));
+				
+			}
 			}
 		});
 		button_2.setText(">");
 		button_2.setBounds(471, 148, 47, 39);
-		
-		Label lblPunti = new Label(shell, SWT.NONE);
-		lblPunti.setFont(SWTResourceManager.getFont("Segoe Script", 12, SWT.NORMAL));
-		lblPunti.setBounds(342, 279, 77, 39);
-		lblPunti.setText("Punti:");
 		
 		Label lblSnake = new Label(shell, SWT.NONE);
 		lblSnake.setAlignment(SWT.CENTER);
@@ -192,10 +196,33 @@ public class Snake {
 		lblSnake.setBounds(200, 10, 114, 42);
 		lblSnake.setText("SNAKE");
 		
-		Label lblNewLabel = new Label(shell, SWT.NONE);
-		lblNewLabel.setFont(SWTResourceManager.getFont("Segoe Script", 12, SWT.NORMAL));
-		lblNewLabel.setBounds(436, 279, 70, 29);
-		lblNewLabel.setText("0");
+		Button btnNewButton = new Button(shell, SWT.NONE);
+		btnNewButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				BufferedWriter scrittore;
+				try{
+					scrittore = new BufferedWriter(new FileWriter("punti.txt"));
+					scrittore.write(labelPunt.getText());
+					scrittore.write("X: " + mela.getX() + "Y: " + mela.getY());
+					scrittore.newLine();
+					scrittore.close();
+				}catch(Exception e1){
+					System.out.println("Errore");
+				}
+			}
+		});
+		btnNewButton.setBounds(366, 193, 152, 25);
+		btnNewButton.setText("Salva");
+		
+		Label lblPunti_1 = new Label(shell, SWT.NONE);
+		lblPunti_1.setFont(SWTResourceManager.getFont("Segoe Script", 12, SWT.NORMAL));
+		lblPunti_1.setBounds(330, 297, 82, 25);
+		lblPunti_1.setText("Punti:");
+		
+		labelPunt = new Label(shell, SWT.NONE);
+		labelPunt.setBounds(417, 302, 75, 25);
+		labelPunt.setText("0");
 		
 		
 
